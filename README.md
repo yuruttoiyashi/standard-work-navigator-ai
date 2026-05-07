@@ -1,5 +1,9 @@
 # Standard Work Navigator AI
 
+## 公開URL
+
+https://standard-work-navigator-ai.vercel.app/
+
 ## 概要
 
 **Standard Work Navigator AI** は、現場作業や事務作業の手順を標準化し、新人教育・引き継ぎ・属人化防止を支援する業務改善アプリです。
