@@ -1,73 +1,89 @@
-# React + TypeScript + Vite
+# Standard Work Navigator AI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 概要
 
-Currently, two official plugins are available:
+**Standard Work Navigator AI** は、現場作業や事務作業の手順を標準化し、新人教育・引き継ぎ・属人化防止を支援する業務改善アプリです。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+作業手順、注意点、よくあるミス、チェック項目を登録すると、Gemini API が新人教育向けの要点、リスクポイント、標準チェックリスト、引き継ぎメモを自動生成します。
 
-## React Compiler
+物流現場・事務作業・安全管理など、日々の業務を「誰が見ても分かる手順書」として整理することを目的に制作しました。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 制作目的
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+物流現場や事務作業では、担当者ごとの経験や口頭説明に依存しやすく、作業の属人化・引き継ぎ漏れ・確認不足が発生しやすい課題があります。
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+本アプリでは、標準作業手順をWeb上で管理し、AIによって教育ポイントや注意点を整理することで、以下の改善を目指しています。
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- 新人教育の品質向上
+- 作業手順の標準化
+- 引き継ぎ漏れの防止
+- 現場作業の属人化防止
+- 管理者による作業確認の効率化
+- A4印刷による職場提出・掲示資料化
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 主な機能
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 手順書登録
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+作業名、カテゴリ、対象者、難易度、想定時間、作業目的、必要なもの、作業手順、注意点、よくあるミス、チェック項目を登録できます。
+
+### 手順書一覧・検索
+
+登録した手順書を一覧で確認できます。  
+作業名・カテゴリ・対象者などで検索でき、必要な手順書をすぐに探せます。
+
+### ダッシュボード
+
+登録済み手順数、公開中の手順数、要更新件数、確認済み件数、AI生成済み件数、平均作業時間を可視化します。
+
+### Gemini AIによる教育資料生成
+
+登録された作業内容をもとに、Gemini API が以下の内容を自動生成します。
+
+- 新人向けの作業概要
+- 教育時の重点ポイント
+- 作業ミス・事故・遅延につながるリスク
+- 標準チェックリスト
+- 引き継ぎメモ
+- 管理者向けコメント
+
+### 教育チェック
+
+手順書ごとに確認済みチェックを付けることができます。  
+新人教育や引き継ぎ確認の進捗管理に活用できます。
+
+### A4印刷
+
+作成した手順書をA4形式で印刷できます。  
+職場提出資料、掲示用資料、教育用資料として活用できます。
+
+---
+
+## 使用技術
+
+| 分類 | 技術 |
+|---|---|
+| フロントエンド | React |
+| ビルドツール | Vite |
+| 言語 | TypeScript |
+| AI連携 | Gemini API |
+| サーバーサイド | Firebase Functions |
+| シークレット管理 | Firebase Secret Manager |
+| デプロイ基盤 | Firebase / Google Cloud |
+| データ保存 | localStorage |
+| スタイリング | CSS in TSX |
+
+---
+
+## アーキテクチャ
+
+```txt
+React / Vite / TypeScript
+        ↓
+Firebase Functions
+        ↓
+Gemini API
