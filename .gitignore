@@ -1,5 +1,22 @@
-.env
-.env.local
+# dependencies
+node_modules
+functions/node_modules
+
+# build
+dist
+functions/lib
+
+# env
 .env
 .env.local
 functions/.env
+
+# firebase / vercel
+.firebase
+.vercel
+firebase-debug.log
+firebase-debug.*.log
+
+# editor
+.vscode
+.DS_Store
